@@ -20,6 +20,8 @@ namespace Ninject.Extensions.WebApi.TraceLogger.Tests
     using Ninject.Extensions.Logging.Log4net.Infrastructure;
     using Ninject.Web.WebApi;
 
+    using log4net.Config;
+
     [TestFixture]
     public class TraceLoggerTests
     {
@@ -85,6 +87,9 @@ namespace Ninject.Extensions.WebApi.TraceLogger.Tests
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
+
+            // Configure log4net
+            XmlConfigurator.Configure();
 
             // Create server
             this.server = new HttpSelfHostServer(config);
