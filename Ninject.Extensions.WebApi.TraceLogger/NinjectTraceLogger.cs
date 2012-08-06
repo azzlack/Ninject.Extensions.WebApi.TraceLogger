@@ -30,9 +30,9 @@
         /// </summary>
         public NinjectTraceLogger()
         {
-            var factory = (ILoggerFactory)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILoggerFactory));
+            var kernel = new StandardKernel();
 
-            this.logger = factory.GetCurrentClassLogger();
+            this.logger = kernel.Get<ILoggerFactory>().GetCurrentClassLogger();
 
             this.beginTraces = new List<TraceRecord>();
         }
