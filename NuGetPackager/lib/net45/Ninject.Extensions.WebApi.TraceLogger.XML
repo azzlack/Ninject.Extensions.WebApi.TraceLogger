@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ninject.Extensions.WebApi.TraceLogger</name>
+    </assembly>
+    <members>
+        <member name="T:Ninject.Extensions.WebApi.TraceLogger.App_Start.NinjectTraceWriterBootstrapper">
+            <summary>
+            Bootstrapper for the Ninject TraceWriter
+            </summary>
+        </member>
+        <member name="M:Ninject.Extensions.WebApi.TraceLogger.App_Start.NinjectTraceWriterBootstrapper.Start">
+            <summary>
+            Executes before the application starts.
+            </summary>
+        </member>
+        <member name="T:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger">
+            <summary>
+            TraceWriter implementation using the Ninject logging extension.
+            </summary>
+        </member>
+        <member name="F:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger.logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="F:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger.beginTraces">
+            <summary>
+            All traces of Kind 'Begin'
+            </summary>
+        </member>
+        <member name="M:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger"/> class.
+            </summary>
+        </member>
+        <member name="M:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger.IsEnabled(System.String,System.Web.Http.Tracing.TraceLevel)">
+            <summary>
+            Determines whether the specified category is enabled.
+            </summary>
+            <param name="category">The category.</param>
+            <param name="level">The level.</param>
+            <returns>
+              <c>true</c> if the specified category is enabled; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger.Trace(System.Net.Http.HttpRequestMessage,System.String,System.Web.Http.Tracing.TraceLevel,System.Action{System.Web.Http.Tracing.TraceRecord})">
+            <summary>
+            Traces the specified request.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="category">The category.</param>
+            <param name="level">The level.</param>
+            <param name="traceAction">The trace action.</param>
+        </member>
+        <member name="M:Ninject.Extensions.WebApi.TraceLogger.NinjectTraceLogger.LogTrace(System.Web.Http.Tracing.TraceRecord)">
+            <summary>
+            Logs the trace.
+            </summary>
+            <param name="record">The trace record.</param>
+        </member>
+        <member name="T:Ninject.Extensions.WebApi.TraceLogger.TraceWriter">
+            <summary>
+            An instance of the currently registered TraceWriter
+            </summary>
+        </member>
+        <member name="F:Ninject.Extensions.WebApi.TraceLogger.TraceWriter.traceWriter">
+            <summary>
+            The singleton.
+            </summary>
+        </member>
+        <member name="M:Ninject.Extensions.WebApi.TraceLogger.TraceWriter.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Ninject.Extensions.WebApi.TraceLogger.TraceWriter"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Ninject.Extensions.WebApi.TraceLogger.TraceWriter.Instance">
+            <summary>
+            Gets the current instance of the ITraceWriter service.
+            </summary>
+            <value>
+            The ITraceWriter instance.
+            </value>
+        </member>
+    </members>
+</doc>
