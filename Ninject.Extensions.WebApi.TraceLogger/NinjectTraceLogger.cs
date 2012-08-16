@@ -84,7 +84,10 @@
         /// <param name="record">The trace record.</param>
         public virtual void LogTrace(TraceRecord record)
         {
-            var message = string.Format("[{0}] {1}: {2} {3} {4}", record.Category, record.Kind, record.Request.Method, record.Request.RequestUri, string.IsNullOrEmpty(record.Message) ? string.Empty : " - " + record.Message);
+            var method = record.Request != null ? record.Request.Method.Method : string.Empty;
+            var uri = record.Request != null ? record.Request.RequestUri.AbsoluteUri : string.Empty;
+
+            var message = string.Format("[{0}] {1}: {2} {3} {4}", record.Category, record.Kind, method, uri, string.IsNullOrEmpty(record.Message) ? string.Empty : " - " + record.Message);
 
             switch (record.Level)
             {
@@ -122,7 +125,7 @@
             // Calculate performance
             if (record.Kind == TraceKind.End)
             {
-                var begin = this.beginTraces.FirstOrDefault(r =>
+                var begin = this.beginTraces.ToList().FirstOrDefault(r =>
                         (record.RequestId == r.RequestId && record.Category == r.Category &&
                          record.Operation == r.Operation && record.Operator == r.Operator));
 
@@ -130,7 +133,7 @@
                 if (begin != null)
                 {
                     // Log performance
-                    this.logger.Info(string.Format("[{0}] {1}: {2} {3} - Request processing time: {4} s", record.Category, record.Kind, record.Request.Method, record.Request.RequestUri, record.Timestamp - begin.Timestamp));
+                    this.logger.Info(string.Format("[{0}] {1}: {2} {3} - Request processing time: {4} s", record.Category, record.Kind, method, uri, record.Timestamp - begin.Timestamp));
 
                     // Remove begintrace
                     this.beginTraces.Remove(begin);
